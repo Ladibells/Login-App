@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bg.loginandregistration.R
 import com.bg.loginandregistration.components.ButtonComponent
 import com.bg.loginandregistration.components.ClickableLoginTextComponent
@@ -26,12 +27,14 @@ import com.bg.loginandregistration.components.MyTextFieldComponent
 import com.bg.loginandregistration.components.NormalTextComponent
 import com.bg.loginandregistration.components.PasswordTextFieldComponent
 import com.bg.loginandregistration.components.UnderLinedNormalTextComponent
+import com.bg.loginandregistration.data.LoginViewModel
+import com.bg.loginandregistration.data.UIEvent
 import com.bg.loginandregistration.navigation.PostOfficeAppRouter
 import com.bg.loginandregistration.navigation.Screen
 import com.bg.loginandregistration.navigation.SystemBackButtonHandler
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
 
     Surface(
         modifier = Modifier
@@ -47,9 +50,17 @@ fun LoginScreen() {
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            MyTextFieldComponent(labelValue = stringResource(id = R.string.email), imageIcon = Icons.Outlined.Email)
+            MyTextFieldComponent(labelValue = stringResource(id = R.string.email), imageIcon = Icons.Outlined.Email,
+                onTextSelected = {
+                    loginViewModel.onEvent(UIEvent.EmailChanged(it))
+                }
+            )
 
-            PasswordTextFieldComponent(labelValue = stringResource(id = R.string.password))
+            PasswordTextFieldComponent(labelValue = stringResource(id = R.string.password),
+                onTextSelected = {
+                    loginViewModel.onEvent(UIEvent.EmailChanged(it))
+                }
+            )
 
             Spacer(modifier = Modifier.height(40.dp))
 

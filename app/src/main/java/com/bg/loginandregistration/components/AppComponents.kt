@@ -22,7 +22,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -99,7 +98,8 @@ fun HeadingTextComponent(value: String) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyTextFieldComponent(labelValue: String, imageIcon: ImageVector) {
+fun MyTextFieldComponent(labelValue: String, imageIcon: ImageVector,
+                         onTextSelected: (String) -> Unit) {
     val textValue = remember {
         mutableStateOf("")
     }
@@ -121,6 +121,7 @@ fun MyTextFieldComponent(labelValue: String, imageIcon: ImageVector) {
         maxLines = 1,
         onValueChange = {
             textValue.value = it
+            onTextSelected(it)
         },
         leadingIcon = {
             Icon(imageVector = imageIcon, contentDescription = "")
@@ -132,7 +133,7 @@ fun MyTextFieldComponent(labelValue: String, imageIcon: ImageVector) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PasswordTextFieldComponent(labelValue: String) {
+fun PasswordTextFieldComponent(labelValue: String, onTextSelected: (String) -> Unit) {
 
     val localFocusManager = LocalFocusManager.current
 
@@ -161,7 +162,9 @@ fun PasswordTextFieldComponent(labelValue: String) {
         keyboardActions = KeyboardActions() {
             localFocusManager.clearFocus()
         },
-        onValueChange = { password = it},
+        onValueChange = {
+            password = it
+            onTextSelected(it)},
         leadingIcon = {
             Icon(imageVector = Icons.Outlined.Lock, contentDescription = "")
         },
@@ -286,7 +289,7 @@ fun DividerTextComponent() {
             fontSize = 18.sp,
             color = TextColor)
 
-        HorizontalDivider(
+        Divider(
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f),

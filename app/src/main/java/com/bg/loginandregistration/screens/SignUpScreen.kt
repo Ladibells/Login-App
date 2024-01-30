@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bg.loginandregistration.navigation.PostOfficeAppRouter
 import com.bg.loginandregistration.R
 import com.bg.loginandregistration.components.ButtonComponent
@@ -27,9 +28,11 @@ import com.bg.loginandregistration.components.HeadingTextComponent
 import com.bg.loginandregistration.components.MyTextFieldComponent
 import com.bg.loginandregistration.components.NormalTextComponent
 import com.bg.loginandregistration.components.PasswordTextFieldComponent
+import com.bg.loginandregistration.data.LoginViewModel
+import com.bg.loginandregistration.data.UIEvent
 
 @Composable
-fun SignUpScreen() {
+fun SignUpScreen(loginViewModel: LoginViewModel = viewModel()) {
 
     Surface(
         modifier = Modifier
@@ -45,20 +48,34 @@ fun SignUpScreen() {
 
             MyTextFieldComponent(
                 labelValue = stringResource(id = R.string.first_name),
-                imageIcon = Icons.Outlined.Person
+                imageIcon = Icons.Outlined.Person,
+                onTextSelected = {
+                    loginViewModel.onEvent(UIEvent.FirstNameChanged(it))
+                }
             )
 
             MyTextFieldComponent(
                 labelValue = stringResource(id = R.string.last_name),
-                imageIcon = Icons.Outlined.Person
+                imageIcon = Icons.Outlined.Person,
+                onTextSelected = {
+                    loginViewModel.onEvent(UIEvent.LastNameChanged(it))
+                }
             )
 
             MyTextFieldComponent(
                 labelValue = stringResource(id = R.string.email),
-                imageIcon = Icons.Outlined.Email
+                imageIcon = Icons.Outlined.Email,
+                onTextSelected = {
+                    loginViewModel.onEvent(UIEvent.EmailChanged(it))
+                }
             )
 
-            PasswordTextFieldComponent(labelValue = stringResource(id = R.string.password))
+            PasswordTextFieldComponent(
+                labelValue = stringResource(id = R.string.password),
+                onTextSelected = {
+                    loginViewModel.onEvent(UIEvent.PasswordChanged(it))
+                }
+            )
             
             CheckboxComponent(value = stringResource(id = R.string.terms_and_conditions),
                 onTextSelected = {

@@ -67,12 +67,14 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
-    debugImplementation("androidx.compose.ui:ui-tooling:1.6.0")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.6.0")
-
-    implementation("androidx.compose.material3:material3:1.1.2")
-    implementation("androidx.compose.material3:material3-window-size-class:1.1.2")
-    implementation("androidx.compose.material3:material3-adaptive:1.0.0-alpha05")
-    implementation("androidx.compose.material3:material3-adaptive-navigation-suite:1.0.0-alpha02")
+//    debugImplementation("androidx.compose.ui:ui-tooling:1.6.0")
+//    implementation("androidx.compose.ui:ui-tooling-preview:1.6.0")
+//
+//    implementation("androidx.compose.material3:material3:1.1.2")
+//    implementation("androidx.compose.material3:material3-window-size-class:1.1.2")
+//    implementation("androidx.compose.material3:material3-adaptive:1.0.0-alpha05")
+//    implementation("androidx.compose.material3:material3-adaptive-navigation-suite:1.0.0-alpha02")
     implementation("androidx.compose.material:material-icons-extended:1.6.0")
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
 }
