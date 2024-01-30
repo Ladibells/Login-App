@@ -1,1 +1,1 @@
-This project is a design of a login and registration app with firebase implementation. This project uses the latest android features. It will be written in android in kotlin Jetpack Compose
+This project is a design of a login and registration app with Firebase implementation. This project uses the latest Android features. It will be written in Kotlin using Jetpack Compose
