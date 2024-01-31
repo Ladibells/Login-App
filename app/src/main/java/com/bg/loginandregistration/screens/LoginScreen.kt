@@ -52,14 +52,16 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
 
             MyTextFieldComponent(labelValue = stringResource(id = R.string.email), imageIcon = Icons.Outlined.Email,
                 onTextSelected = {
-                    loginViewModel.onEvent(UIEvent.EmailChanged(it))
-                }
+//                    loginViewModel.onEvent(UIEvent.EmailChanged(it))
+                },
+                errorStatus = false
             )
 
             PasswordTextFieldComponent(labelValue = stringResource(id = R.string.password),
                 onTextSelected = {
                     loginViewModel.onEvent(UIEvent.EmailChanged(it))
-                }
+                },
+                errorStatus = false
             )
 
             Spacer(modifier = Modifier.height(40.dp))
@@ -68,7 +70,10 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            ButtonComponent(value = stringResource(id = R.string.login))
+            ButtonComponent(value = stringResource(id = R.string.login),
+                onButtonClicked = {
+
+                })
 
             Spacer(modifier = Modifier.height(20.dp))
 

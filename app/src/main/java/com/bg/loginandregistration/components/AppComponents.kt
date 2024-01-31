@@ -99,7 +99,7 @@ fun HeadingTextComponent(value: String) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyTextFieldComponent(labelValue: String, imageIcon: ImageVector,
-                         onTextSelected: (String) -> Unit) {
+                         onTextSelected: (String) -> Unit, errorStatus: Boolean = false) {
     val textValue = remember {
         mutableStateOf("")
     }
@@ -125,7 +125,8 @@ fun MyTextFieldComponent(labelValue: String, imageIcon: ImageVector,
         },
         leadingIcon = {
             Icon(imageVector = imageIcon, contentDescription = "")
-        }
+        },
+        isError = !errorStatus
     )
 
 }
@@ -133,7 +134,7 @@ fun MyTextFieldComponent(labelValue: String, imageIcon: ImageVector,
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PasswordTextFieldComponent(labelValue: String, onTextSelected: (String) -> Unit) {
+fun PasswordTextFieldComponent(labelValue: String, onTextSelected: (String) -> Unit, errorStatus: Boolean = false) {
 
     val localFocusManager = LocalFocusManager.current
 
@@ -184,7 +185,8 @@ fun PasswordTextFieldComponent(labelValue: String, onTextSelected: (String) -> U
                 Icon(imageVector = iconImage, contentDescription = description)
             }
         },
-        visualTransformation = if (passwordVisible.value) VisualTransformation.None else PasswordVisualTransformation()
+        visualTransformation = if (passwordVisible.value) VisualTransformation.None else PasswordVisualTransformation(),
+        isError = !errorStatus
     )
 
 }
